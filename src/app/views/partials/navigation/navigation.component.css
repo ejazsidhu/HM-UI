@@ -1,0 +1,18 @@
+nav {
+    background-color: #4A90E2; /* Pleasant blue color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Drop shadow */
+    padding: 10px 20px;
+    color: white !important;
+    font-size: 18px;
+    border-radius: 5px; /* Slightly rounded corners */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
