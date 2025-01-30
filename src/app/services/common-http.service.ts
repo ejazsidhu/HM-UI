@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,9 @@ export class CommonHttpService {
     // Implementation for creating a resource
   }
 
-  readAll(url:string): Observable<any[]> {
+  readAll(url:string): Promise<any[]> {
     const completeUrl= this.BASE_URL + url;
-    return this.http.get<any[]>(completeUrl);
+    return firstValueFrom(this.http.get<any[]>(completeUrl));
   }
 
 

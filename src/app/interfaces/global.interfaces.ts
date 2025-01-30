@@ -7,6 +7,21 @@ export interface Account {
     address: string;
     accountNumber?: string | null;
     accountBalance?: number;
-    createdAt?: Date;
-    updatedAt?: Date;
+}
+
+export interface Transaction {
+    accountId: string;
+    oID: number;
+    Number: string;
+    Date: Date;
+    Amount: number;
+    Description: string;
+}
+
+export interface CreateTransaction {
+    accountId: string;
+    Number: string;
+    Date: Date;
+    Amount: number;
+    Description: string;
 }

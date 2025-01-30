@@ -4,7 +4,7 @@
            <div class="card  mt-3">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4>Transactions</h4>
-                <button class="btn btn-primary" (click)="addTransaction()">Add Transaction</button>
+                <button class="btn btn-primary" [routerLink]="['add']">Add Transaction</button>
             </div>
            </div>
            <div class="card-body">
@@ -27,7 +27,9 @@
                             <td>{{transaction.Number }}</td>                            
                             <td>{{ transaction.Description }}</td>
                             <td>{{transaction.Amount}}</td>
-                            <td></td>
+                            <td>
+                                <button class="btn btn-primary" [routerLink]="['edit', transaction._id]">Edit</button>
+                            </td>
                         </tr>
                     } @empty {
                         <tr>

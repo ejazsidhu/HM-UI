@@ -4,7 +4,7 @@
            <div class="card  mt-3">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h4>Accounts</h4>
-                <button class="btn btn-primary" (click)="addTransaction()">Add Account</button>
+                <button class="btn btn-primary" [routerLink]="['add']">Add Account</button>
             </div>
            </div>
            <div class="card-body">
@@ -29,7 +29,9 @@
                             <td>{{acc.Name }}</td>                            
                             <td>{{ acc.MobileNumber }}</td>
                             <td [class]="{'text-danger': acc.Balance < 0, 'text-success': acc.Balance >= 0}">{{acc.Balance}}</td>
-                            <td></td>
+                            <td>
+                                <button class="btn btn-primary" (click)="route(acc.oID)">Detials</button>
+                            </td>
                         </tr>
                     } @empty {
                         <tr>
