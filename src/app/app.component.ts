@@ -11,8 +11,8 @@ import { SummaryComponent } from './views/summary/summary.component';
 })
 export class AppComponent {
   title = 'HM-UI';
-  constructor(private taost:ToastrService) {
-    this.taost.success('Hello world!', 'Toastr fun!');
-  }
+  // constructor(private taost:ToastrService) {
+  //   this.taost.success('Hello world!', 'Toastr fun!');
+  // }
 
 }
