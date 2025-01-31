@@ -27,10 +27,10 @@ export class AddEditTransactionComponent {
 
   patchFormValues(transaction: any): void {
     this.transactionForm.patchValue({
-      amount: transaction.amount,
-      date: new Date(transaction.date),
-      description: transaction.description,
-      accountId: transaction.accountId
+      amount: transaction.Amount,
+      date: new Date(transaction.Date),
+      description: transaction.Description,
+      accountId: transaction.accountId._id
     });
   }
   accounts: any;
@@ -38,7 +38,7 @@ export class AddEditTransactionComponent {
   ngOnInit(): void {
     this.getAllaCounts();
     this.acRouter.params.pipe(takeUntil(this.destroy$)).subscribe(params => {
-      const id =params['id']
+      const id = params['id']
       if (id) {
         const url = `transactions/${id}`;
         this.httpService.readAll(url).then((transaction: any) => {
@@ -56,7 +56,13 @@ export class AddEditTransactionComponent {
   }
 
   onSubmit(): void {
-  console.log(this.transactionForm.value);
+    console.log(this.transactionForm.value);
+    const url = 'transactions';
+    // this.httpService.create(url, this.transactionForm.value).then((response: any) => {
+    //   console.log(response);
+    // }).catch((error: HttpErrorResponse) => {
+    //   console.error(error);
+    // });
   }
   onCancel(): void { }
 

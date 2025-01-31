@@ -24,10 +24,10 @@
                     @for (acc of accounts; track acc._id;let i=$index) {
                         <tr>
                             <th scope="row">{{ i+1 }}</th>
-                            <td>{{acc.Date }}</td>
-                            <td>{{acc.Number }}</td>                            
-                            <td>{{acc.Name }}</td>                            
-                            <td>{{ acc.MobileNumber }}</td>
+                            <td>{{acc.date }}</td>
+                            <td>{{acc.number }}</td>                            
+                            <td>{{acc.name }}</td>                            
+                            <td>{{ acc.mobileNumber }}</td>
                             <td [class]="{'text-danger': acc.Balance < 0, 'text-success': acc.Balance >= 0}">{{acc.Balance}}</td>
                             <td>
                                 <button class="btn btn-primary" (click)="route(acc.oID)">Detials</button>

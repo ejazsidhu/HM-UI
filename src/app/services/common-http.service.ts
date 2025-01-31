@@ -10,8 +10,9 @@ export class CommonHttpService {
   private BASE_URL = 'http://localhost:4000/api/';
 
   constructor(private http:HttpClient) { }
-  create(resource: any): void {
-    // Implementation for creating a resource
+  create(url:string,body:any): Promise<any> {
+    const completeUrl= this.BASE_URL + url;
+    return firstValueFrom(this.http.post<any>(completeUrl,body));
   }
 
   readAll(url:string): Promise<any[]> {
