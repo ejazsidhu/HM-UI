@@ -38,8 +38,8 @@ export class TransactionListComponent implements OnInit {
   }
 
   categorizeTransactions(): void {
-    this.incomeTransactions = this.transactions.filter(transaction => transaction.Amount >= 0);
-    this.expenseTransactions = this.transactions.filter(transaction => transaction.Amount < 0);
+    this.incomeTransactions = this.transactions.filter(transaction => transaction.amount >= 0);
+    this.expenseTransactions = this.transactions.filter(transaction => transaction.amount < 0);
     console.log(this.incomeTransactions,this.expenseTransactions);
   }
 

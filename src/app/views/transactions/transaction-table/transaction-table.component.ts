@@ -11,10 +11,5 @@ import { RouterLink } from '@angular/router';
 export class TransactionTableComponent {
 
   @Input() transactions: any[] = [];
-  ngOnChanges(changes: SimpleChanges) {
-    debugger;
-    if (changes['transactions']) {
-      console.log('Transactions input has changed:', changes['transactions'].currentValue);
-    }
-  }
+
 }

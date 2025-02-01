@@ -20,15 +20,13 @@ export class CommonHttpService {
     return firstValueFrom(this.http.get<any[]>(completeUrl));
   }
 
-
-
-  read(id: number): any {
-    // Implementation for reading a resource by id
+  update(url:string, chagnes: any): Promise<any> {
+    const completeUrl= this.BASE_URL + url;
+    return firstValueFrom(this.http.put<any>(completeUrl,chagnes));
   }
 
-  update(id: number, resource: any): void {
-    // Implementation for updating a resource by id
-  }
+
+ 
 
   delete(id: number): void {
     // Implementation for deleting a resource by id
