@@ -4,6 +4,7 @@ import { CommonHttpService } from '../../../services/common-http.service';
 import { Subject, takeUntil } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { UtilityService } from '../../../services/utility.service';
 
 @Component({
   selector: 'app-add-edit-transaction',
@@ -16,6 +17,7 @@ export class AddEditTransactionComponent {
   fb = inject(FormBuilder);
   httpService = inject(CommonHttpService);
   acRouter = inject(ActivatedRoute);
+  utilService = inject(UtilityService);
   private destroy$ = new Subject<void>();
 
   transactionForm: FormGroup = this.fb.group({
@@ -28,7 +30,7 @@ export class AddEditTransactionComponent {
   patchFormValues(transaction: any): void {
     this.transactionForm.patchValue({
       amount: transaction.amount,
-      date: this.formatDate(new Date(transaction.Date)),
+      date: this.utilService.formatDate(new Date(transaction.Date)),
       description: transaction.description,
       accountId: transaction.accountId._id
     });
@@ -64,7 +66,7 @@ export class AddEditTransactionComponent {
     const number = this.accounts.find((account: any) => account._id === this.transactionForm.value.accountId).number
     const transaction = {
       amount: this.transactionForm.value.amount,
-      date: this.formatDate(this.transactionForm.value.date),    
+      date: this.utilService.formatDate(this.transactionForm.value.date),    
       description: this.transactionForm.value.description,
       accountId: this.transactionForm.value.accountId,
       oID: oId,
@@ -88,13 +90,7 @@ export class AddEditTransactionComponent {
     }
   }
 
-  formatDate(date: Date): string {
-    const validDate = new Date(date);
-    const day = String(validDate.getDate()).padStart(2, '0');
-    const month = String(validDate.getMonth() + 1).padStart(2, '0');
-    const year = validDate.getFullYear();
-    return `${month}-${day}-${year}`;
-  }
+ 
 
   onCancel(): void { }
 
