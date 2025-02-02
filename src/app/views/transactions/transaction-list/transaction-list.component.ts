@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbHighlight, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { TransactionTableComponent } from '../transaction-table/transaction-table.component';
+import { UtilityService } from '../../../services/utility.service';
 
 @Component({
   selector: 'app-transaction-list',
@@ -21,8 +22,9 @@ export class TransactionListComponent implements OnInit {
   transactions: any[] = [];
   incomeTransactions: any[] = [];
   expenseTransactions: any[] = [];
+  transactionDate:Date= new Date();
 
-  constructor(private httpService: CommonHttpService, private acRoute: ActivatedRoute) {
+  constructor(private httpService: CommonHttpService, private acRoute: ActivatedRoute,private utilService:UtilityService) {
     this.acRoute.params.subscribe(params => {
       const date = new Date();
       if (params['id']) {
@@ -38,13 +40,14 @@ export class TransactionListComponent implements OnInit {
   }
 
   categorizeTransactions(): void {
-    this.incomeTransactions = this.transactions.filter(transaction => transaction.Amount >= 0);
-    this.expenseTransactions = this.transactions.filter(transaction => transaction.Amount < 0);
+    this.incomeTransactions = this.transactions.filter(transaction => transaction.amount >= 0);
+    this.expenseTransactions = this.transactions.filter(transaction => transaction.amount < 0);
     console.log(this.incomeTransactions,this.expenseTransactions);
   }
 
  async getallTRansactions(): Promise<void> {
-    const url = 'transactions';
+  const date = this.utilService.formatDate(this.transactionDate);
+  const url = 'transactions?page=1&date=' + date;
     this.httpService.readAll(url).then((data: any) => {
       console.log(data);
       this.transactions = data.transactions;

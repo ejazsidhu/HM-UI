@@ -6,33 +6,38 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col"  >Date</th>
-                        <th scope="col"  >Account Number</th>
-                        <th scope="col" >Descripton</th>
-                        <th scope="col" >Amount</th>
-                        <th scope="col" >Action</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Account Number</th>
+                        <th scope="col">Descripton</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @for (transaction of transactions; track transaction._id;let i=$index) {
-                        <tr>
-                            <th scope="row">{{ i+1 }}</th>
-                            <td>{{transaction.date }}</td>
-                            <td>{{transaction.number }}</td>                            
-                            <td>{{ transaction.description }}</td>
-                            <td>{{transaction.amount}}</td>
-                            <td>
-                                <button class="btn btn-primary" [routerLink]="['edit', transaction._id]">Edit</button>
-                            </td>
-                        </tr>
+                    <tr>
+                        <th scope="row">{{ i+1 }}</th>
+                        <td>{{transaction.date }}</td>
+                        <td>{{transaction.number }}</td>
+                        <td>{{ transaction.description }}</td>
+                        <td>{{transaction.amount}}</td>
+                        <td>
+                            <a [routerLink]="['edit', transaction._id]" title="Edit Transaction">
+                                <img src="icons/edit.svg" alt="Edit" style="width: 25%; height: 25%; filter: invert(50%) sepia(100%) saturate(500%) hue-rotate(200deg);" />
+                            </a>
+                            <a (click)="deleteTransaction(transaction._id)" style="cursor: pointer;" title="Delete Transaction">
+                                <img src="icons/trash.svg" alt="Delete" style="width: 25%; height: 25%; filter: invert(20%) sepia(100%) saturate(5000%) hue-rotate(0deg) brightness(90%) contrast(100%);" />
+                            </a>
+                        </td>
+                    </tr>
                     } @empty {
-                        <tr>
-                            <td colspan="6" style="text-align: center">No Transaction found</td>
-                        </tr>
+                    <tr>
+                        <td colspan="6" style="text-align: center">No Transaction found</td>
+                    </tr>
                     }
                 </tbody>
             </table>
-         
+
         </div>
     </div>
 </div>

@@ -1,21 +1,49 @@
-<div style="display: flex;">
-    <div style="flex: 1; padding: 10px;">
-        <div class="card">
-            <div class="card-header">
-                Positive Transactions
-            </div>
-            <div class="card-body">
-                <app-transaction-table [transactions]="incomeTransactions"></app-transaction-table>
+<div class="containe-fluid">
+    <div class="row">
+       
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    Search Transactions by Date
+                </div>
+                <div class="card-body">
+                    <form (submit)="getallTRansactions()">
+                        <div class="form-group">
+                            <label for="transactionDate">Date:</label>
+                            <input type="date" id="transactionDate" class="form-control" [(ngModel)]="transactionDate"
+                                name="transactionDate">
+                        </div>
+                        <button type="submit" class="btn btn-primary text-right my-2">Search</button>
+                    </form>
+                </div>
             </div>
         </div>
+
+        <div class="col-md-8 mb-4 text-right">
+            <button class="btn btn-success" [routerLink]="[ '/add']">Add Transaction</button>
+        </div>
     </div>
-    <div style="flex: 1; padding: 10px;">
-        <div class="card">
-            <div class="card-header">
-                Negative Transactions
+    <div class="row">
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                Income Transactions
+                </div>
+                <div class="card-body">
+                    <app-transaction-table [transactions]="incomeTransactions"></app-transaction-table>
+                </div>
             </div>
-            <div class="card-body">
-                <app-transaction-table [transactions]="expenseTransactions"></app-transaction-table>
+        </div>
+
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    Expense Transactions
+                </div>
+                <div class="card-body">
+                    <app-transaction-table [transactions]="expenseTransactions"></app-transaction-table>
+                </div>
             </div>
         </div>
     </div>
