@@ -5,6 +5,7 @@ import { AddEditTransactionComponent } from './views/transactions/add-edit-trans
 import { TransactionDetailsComponent } from './views/transactions/transaction-details/transaction-details.component';
 import { TransactionBaseComponent } from './views/transactions/transaction-base/transaction-base.component';
 import { LoginComponent } from './views/login/login.component';
+import { NavigationComponent } from './views/partials/navigation/navigation.component';
 
 export const routes: Routes = [
 
@@ -18,39 +19,45 @@ export const routes: Routes = [
         component: LoginComponent
     },
     {
-        path: 'transactions',
-        component: TransactionBaseComponent,
-        children: [
+        path: '',
+        component: NavigationComponent,
+        children:[
             {
-                path: 'view/:id',
-                component: TransactionListComponent
+                path: 'transactions',
+                component: TransactionBaseComponent,
+                children: [
+                    {
+                        path: 'view/:id',
+                        component: TransactionListComponent
+                    },
+                    {
+                        path: 'edit/:id',
+                        component: AddEditTransactionComponent
+                    },
+                   
+                    {
+                        path: 'add',
+                        component: AddEditTransactionComponent
+                    },
+                    {
+                        path: '',
+                        component: TransactionListComponent
+                    },
+                   
+                    {
+                        path: '**',
+                        component: TransactionListComponent
+                    }
+                ]
             },
             {
-                path: 'edit/:id',
-                component: AddEditTransactionComponent
+                path: 'accounts',
+                component: AcountListComponent
             },
-           
-            {
-                path: 'add',
-                component: AddEditTransactionComponent
-            },
-            {
-                path: '',
-                component: TransactionListComponent
-            },
-           
             {
                 path: '**',
-                component: TransactionListComponent
+                redirectTo: 'transactions'
             }
         ]
-    },
-    {
-        path: 'accounts',
-        component: AcountListComponent
-    },
-    {
-        path: '**',
-        redirectTo: 'transactions'
-    }
+    }, 
 ];
