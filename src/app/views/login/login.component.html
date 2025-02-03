@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card p-4" style="width: 20rem;">
+        <div class="text-center mb-4">
+            <img src="images/logo.jpeg" alt="Logo" class="img-fluid">
+        </div>
+        <form [formGroup]="loginForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" formControlName="username" required>
+                    
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" formControlName="password" required>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary my-3" (click)="login()">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
